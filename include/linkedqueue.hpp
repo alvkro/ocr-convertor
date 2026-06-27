@@ -25,6 +25,7 @@ public:
     while (!empty())
       m_head = std::move(m_head->m_next);
   }
+
   void enqueue(sc::vector<uint8_t> data) {
     auto new_node = std::make_unique<Node>(std::move(data));
 
