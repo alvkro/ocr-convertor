@@ -27,6 +27,8 @@ namespace sc {
  */
 template <typename T>
 class vector {
+private:
+  size_t resize_count{0};
   //=== Aliases
 public:
   using size_type = unsigned long;   //!< The size type.
@@ -34,8 +36,9 @@ public:
   using pointer = value_type*;       //!< Pointer to a value in the container.
   using reference = value_type&;     //!< Reference to a value in the container.
   using const_reference = const T&;  //!< Const ref to a value in the container.
+  size_t get_resize_count() const { return resize_count; }
 
-  //!< The iterator, instantiated from a template class.
+    //!< The iterator, instantiated from a template class.
   class iterator {
   public:
     using iterator_category = std::random_access_iterator_tag;
@@ -746,18 +749,24 @@ public:
     delete[] m_storage;
     m_storage = temp_storage;
     m_capacity = size_change;
+
+    resize_count++; // Records that the reallocation took place
   }
 
   /**
    * @brief Reduces capacity to fit the size.
    */
   void shrink_to_fit() {
+    if(m_capacity == m_end) return; // Avoids unnecessary reallocation
+    
     value_type* temp = new value_type[m_end];
     std::copy(m_storage, m_storage + m_end, temp);
     
     delete[] m_storage;
     m_storage = temp;
     m_capacity = m_end;
+
+    resize_count++; // Records that the reallocation took place
   }
 
   /**
