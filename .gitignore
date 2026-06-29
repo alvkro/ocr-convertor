@@ -1,0 +1,20 @@
+# Ignora os executáveis pesados
+*.o
+*.out
+*.exe
+*.obj
+a.out
+
+# Impede que a "bolha" do ambiente virtual suba. Tive que criar esse ambiente pra os pacotes do python não quebrasse minha máquina, pq meu Linux usa python
+ambiente_graficos/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Ignora configurações locais do VS Code.
+.vscode/
+
+# ignora as imagens geradas pq são gigantes
+*.ppm
+*.pgm
