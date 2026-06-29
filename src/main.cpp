@@ -14,7 +14,8 @@ int main() {
     std::string input{""};
     std::getline(std::cin, input);
     fs::path file(input);
-    read_image(file, image_pixels);
+    auto img = read_image(file, image_pixels);
+    save_bin(file, image_pixels, img.w, img.h);
     auto end_io = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> time_io = end_io - start_io;
     std::cout << "time de Leitura (I/O): " << time_io.count() << " ms\n";
