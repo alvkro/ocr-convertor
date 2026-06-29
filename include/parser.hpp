@@ -1,7 +1,8 @@
 #pragma once
 #include "vector.hpp"
-#include "types.hpp"
 #include <string>
+
+struct Pixel;
 
 struct ImagemInfo {
     int w;

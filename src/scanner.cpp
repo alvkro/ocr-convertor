@@ -1,4 +1,5 @@
 #include "../include/scanner.hpp"
+#include "../include/types.hpp"
 
 void process_image_streaming(const sc::vector<Pixel> &raw_image, int width,
                              LinkedQueue &queue) {
@@ -13,4 +14,10 @@ void process_image_streaming(const sc::vector<Pixel> &raw_image, int width,
       current_line = sc::vector<uint8_t>();
     }
   }
+}
+
+uint8_t convert_to_gray(const Pixel &p) {
+  float x = 0.299f * p.r + 0.587f * p.g + 0.114f * p.b;
+
+  return static_cast<uint8_t>(x);
 }
