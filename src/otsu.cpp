@@ -7,7 +7,7 @@ void Otsu::fill_histogram() {
     }
 }
 
-uint Otsu::calculate_otsu() {
+uint8_t Otsu::calculate_otsu() {
     float total_sum{0};
     for (size_t idx{0}; idx < 256; ++idx) {
         total_sum += idx * histogram[idx];
@@ -43,10 +43,10 @@ uint Otsu::calculate_otsu() {
     return ideal_threshold;
 }
 
-void Otsu::binarize_img() {
+void Otsu::binarize_img(uint8_t threshold) {
     for (size_t idx{0}; idx < size; ++idx) {
         uint this_gray{ (convert_to_gray(m_pixels[idx]))};
-        if (this_gray < this->calculate_otsu()) {
+        if (this_gray < threshold) {
             m_pixels[idx].r = 0;
             m_pixels[idx].g = 0;
             m_pixels[idx].b = 0;

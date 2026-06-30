@@ -16,7 +16,7 @@ public:
         size = img_info.w * img_info.h;
     }
 
-    uint calculate_otsu();
+    uint8_t calculate_otsu();
     void fill_histogram();
-    void binarize_img();
+    void binarize_img(uint8_t threshold);
 };

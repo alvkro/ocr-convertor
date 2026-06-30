@@ -38,7 +38,7 @@ int main() {
 
     auto start_bin = std::chrono::high_resolution_clock::now();
     //code here
-    ots.binarize_img();
+    ots.binarize_img(otsu_threshold);
     auto end_bin = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> time_bin = end_bin - start_bin;
     std::cout << "Binarization Time: " << time_bin.count() << " ms\n";
