@@ -1,7 +1,7 @@
 #include "../include/otsu.hpp"
 
 void Otsu::fill_histogram() {
-    for (size_t idx{0}; idx < size; ++idx) {
+    for (size_t idx{0}; idx < static_cast<size_t>(size); ++idx) {
         int gray_shade = convert_to_gray(m_pixels[idx]);
         histogram[gray_shade]++;
     }
@@ -44,7 +44,7 @@ uint8_t Otsu::calculate_otsu() {
 }
 
 void Otsu::binarize_img(uint8_t threshold) {
-    for (size_t idx{0}; idx < size; ++idx) {
+    for (size_t idx{0}; idx < static_cast<size_t>(size); ++idx) {
         uint this_gray{ (convert_to_gray(m_pixels[idx]))};
         if (this_gray < threshold) {
             m_pixels[idx].r = 0;

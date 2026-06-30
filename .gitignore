@@ -18,3 +18,8 @@ __pycache__/
 # ignora as imagens geradas pq são gigantes
 *.ppm
 *.pgm
+
+# ignora output de compilacao e csvs
+*.csv
+build
+ocr_convertor

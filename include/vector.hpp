@@ -665,7 +665,7 @@ public:
     m_end += count;
 
     return iterator{m_storage + index};
-  };
+  }
 
   /**
    * @brief Inserts elements from a range [first, last) at a specific position.
@@ -690,7 +690,7 @@ public:
     m_end += count;
 
     return iterator{m_storage + index};
-  };
+  }
 
   /**
    * @brief Inserts elements from an initializer list at a specific position.
