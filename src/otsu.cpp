@@ -2,7 +2,7 @@
 
 void Otsu::fill_histogram() {
     for (size_t idx{0}; idx < size; ++idx) {
-        int gray_shade = convert_to_gray(pixels[idx]);
+        int gray_shade = convert_to_gray(m_pixels[idx]);
         histogram[gray_shade]++;
     }
 }
@@ -45,15 +45,21 @@ uint Otsu::calculate_otsu() {
 
 void Otsu::binarize_img() {
     for (size_t idx{0}; idx < size; ++idx) {
-        uint this_gray{ (convert_to_gray(pixels[idx]))};
+        uint this_gray{ (convert_to_gray(m_pixels[idx]))};
         if (this_gray < this->calculate_otsu()) {
-            pixels[idx].r = 0;
-            pixels[idx].g = 0;
-            pixels[idx].b = 0;
+            m_pixels[idx].r = 0;
+            m_pixels[idx].g = 0;
+            m_pixels[idx].b = 0;
         } else {
-            pixels[idx].r = 255;
-            pixels[idx].g = 255;
-            pixels[idx].b = 255;
+            m_pixels[idx].r = 255;
+            m_pixels[idx].g = 255;
+            m_pixels[idx].b = 255;
         }
     }
+}
+
+uint8_t Otsu::convert_to_gray(Pixel& p) {
+  float x = 0.299f * p.r + 0.587f * p.g + 0.114f * p.b;
+
+  return static_cast<uint8_t>(x);
 }

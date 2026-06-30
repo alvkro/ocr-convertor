@@ -7,14 +7,13 @@ private:
     int height{0};
     int size{0};
     int histogram[256] = { 0 };
-    sc::vector<Pixel> pixels;
-    uint convert_to_gray(Pixel &p);
+    sc::vector<Pixel> m_pixels;
+    uint8_t convert_to_gray(Pixel &p);
 public:
-    Otsu(ImagemInfo &img_info, sc::vector<Pixel> &img_pixels) {
+    Otsu(const ImagemInfo& img_info, const sc::vector<Pixel>& img_pixels) : m_pixels(img_pixels)    {
         width = img_info.w;
         height = img_info.h;
         size = img_info.w * img_info.h;
-        pixels = img_pixels;
     }
 
     uint calculate_otsu();

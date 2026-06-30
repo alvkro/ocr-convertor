@@ -3,6 +3,7 @@
 #include "../include/linkedqueue.hpp"
 #include "../include/types.hpp"
 #include "../include/scanner.hpp"
+#include "../include/otsu.hpp"
 #include <iostream>
 #include <chrono>
 #include <filesystem>
@@ -20,21 +21,24 @@ int main() {
     std::chrono::duration<double, std::milli> time_io = end_io - start_io;
     std::cout << "time de Leitura (I/O): " << time_io.count() << " ms\n";
 
+    Otsu ots(img, image_pixels);
     auto start_gray = std::chrono::high_resolution_clock::now();
-    //code 
-    convert_to_gray(); // falta os argumentos
+    // code here
+    ots.fill_histogram();
     auto end_gray = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> time_gray = end_gray - start_gray;
     std::cout << "Grayscale Conversion Time: " << time_gray.count() << " ms\n";
 
     auto start_otsu = std::chrono::high_resolution_clock::now();
     //code here
+    auto otsu_threshold = ots.calculate_otsu();
     auto end_otsu = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> time_otsu = end_otsu - start_otsu;
     std::cout << "Otsu Threshold Calculation Time: " << time_otsu.count() << " ms\n";
 
     auto start_bin = std::chrono::high_resolution_clock::now();
     //code here
+    ots.binarize_img();
     auto end_bin = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> time_bin = end_bin - start_bin;
     std::cout << "Binarization Time: " << time_bin.count() << " ms\n";
