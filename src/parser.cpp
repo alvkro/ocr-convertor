@@ -1,4 +1,5 @@
 #include "../include/parser.hpp"
+#include "../include/types.hpp"
 #include <cstdint>
 #include <fstream>
 #include <stdexcept>
